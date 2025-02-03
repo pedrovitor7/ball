@@ -67,7 +67,7 @@
             target.style.top = `${randomY}px`;
         }
         
-        target.addEventListener("touchstart", () => {
+        function showMessage() {
             message.style.display = "block";
             setTimeout(() => {
                 message.style.display = "none";
@@ -75,8 +75,18 @@
                 scoreDisplay.textContent = score;
                 moveTarget();
             }, 2000);
+        }
+
+        // Adicionando o evento para clique (click) na bolinha
+        target.addEventListener("click", () => {
+            showMessage();
         });
         
+        // Adicionando o evento para toque (touchstart) na bolinha
+        target.addEventListener("touchstart", () => {
+            showMessage();
+        });
+
         moveTarget();
     </script>
 </body>
