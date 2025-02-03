@@ -33,6 +33,13 @@
             border-radius: 50%;
             cursor: pointer;
         }
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -40,10 +47,12 @@
     <div id="game-container">
         <div id="target"></div>
     </div>
+    <div id="message">Perdeu! Bahhh!</div>
 
     <script>
         const target = document.getElementById("target");
         const scoreDisplay = document.getElementById("score");
+        const message = document.getElementById("message");
         let score = 0;
         
         function moveTarget() {
@@ -59,9 +68,13 @@
         }
         
         target.addEventListener("touchstart", () => {
-            score++;
-            scoreDisplay.textContent = score;
-            moveTarget();
+            message.style.display = "block";
+            setTimeout(() => {
+                message.style.display = "none";
+                score = 0;
+                scoreDisplay.textContent = score;
+                moveTarget();
+            }, 2000);
         });
         
         moveTarget();
