@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Clique</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            touch-action: manipulation;
+        }
+        #game-container {
+            position: relative;
+            width: 90vw;
+            height: 90vw;
+            max-width: 350px;
+            max-height: 350px;
+            border: 2px solid black;
+            background-color: white;
+            overflow: hidden;
+        }
+        #target {
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pontuação: <span id="score">0</span></h1>
+    <div id="game-container">
+        <div id="target"></div>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+        const scoreDisplay = document.getElementById("score");
+        let score = 0;
+        
+        function moveTarget() {
+            const container = document.getElementById("game-container");
+            const maxX = container.clientWidth - target.clientWidth;
+            const maxY = container.clientHeight - target.clientHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            target.style.left = `${randomX}px`;
+            target.style.top = `${randomY}px`;
+        }
+        
+        target.addEventListener("touchstart", () => {
+            score++;
+            scoreDisplay.textContent = score;
+            moveTarget();
+        });
+        
+        moveTarget();
+    </script>
+</body>
+</html>
